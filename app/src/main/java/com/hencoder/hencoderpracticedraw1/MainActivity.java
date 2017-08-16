@@ -13,6 +13,9 @@ import android.view.Menu;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 参考链接：https://zhuanlan.zhihu.com/p/27787919
+ */
 public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager pager;

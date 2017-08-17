@@ -2,25 +2,19 @@ package com.hencoder.hencoderpracticedraw1.practice;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-
-import com.hencoder.hencoderpracticedraw1.utils.DisplayUtils;
 
 public class Practice9DrawPathView extends View {
 
     private Paint mPaint = new Paint();
     private Path mPath = new Path();
-    /*{
-        // 使用 path 对图形进行描述（这段描述代码不必看懂）
-        mPath.addArc(200, 200, 400, 400, -225, 225);
-        mPath.arcTo(400, 200, 600, 400, -180, 225, false);
-        mPath.lineTo(400, 542);
-    }*/
+    private RectF rectF = new RectF();
+    private RectF rectF1 = new RectF();
 
     public Practice9DrawPathView(Context context) {
         super(context);
@@ -39,12 +33,17 @@ public class Practice9DrawPathView extends View {
         super.onDraw(canvas);
 
 //        练习内容：使用 canvas.drawPath() 方法画心形
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(DisplayUtils.dp2px(getContext(),5));
-        mPaint.setColor(Color.BLACK);
-        mPath.lineTo(100,100);
-        mPath.moveTo(200,100);
-        mPath.rLineTo(0,-100);
+        rectF.left = 100;
+        rectF.top = 200;
+        rectF.right = 300;
+        rectF.bottom = 400;
+        mPath.addArc(rectF,-225,225);
+        rectF1.left = rectF.right;
+        rectF1.right = rectF.right+200;
+        rectF1.top = rectF.top;
+        rectF1.bottom = rectF.bottom;
+        mPath.arcTo(rectF1,-180,225);
+        mPath.lineTo(300,600);
         canvas.drawPath(mPath,mPaint);
 
     }
